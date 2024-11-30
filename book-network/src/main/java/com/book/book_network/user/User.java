@@ -1,5 +1,7 @@
 package com.book.book_network.user;
 
+import com.book.book_network.book_library.book.Book;
+import com.book.book_network.book_library.history.BookTransactionHistory;
 import com.book.book_network.role.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -45,8 +47,15 @@ public class User implements UserDetails, Principal {
     private String password;
     private boolean accountLocked;
     private boolean enabled;
+
     @ManyToMany(fetch = EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -57,10 +66,7 @@ public class User implements UserDetails, Principal {
     private LocalDateTime lastModifiedDate;
 
 
-    @Override
-    public String getName() {
-        return email;
-    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -98,6 +104,15 @@ public class User implements UserDetails, Principal {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public String fullName() {
+        return getFirstname() + " " + getLastname();
+    }
+
+    @Override
+    public String getName() {
+        return email;
     }
 
     public String getFullName() {

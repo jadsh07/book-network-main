@@ -1,5 +1,4 @@
 package com.book.book_network.config;
-
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -15,12 +14,12 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @OpenAPIDefinition(
         info = @Info(
                 contact = @Contact(
-                        name = "Alibou",
-                        email = "contact@aliboucoding.com",
+                        name = "Book store",
+                        email = "jadshdev@gmail.com",
                         url = "https://aliboucoding.com/course"
                 ),
                 description = "OpenApi documentation for Spring Security",
-                title = "OpenApi specification - Alibou",
+                title = "OpenApi specification - Book store",
                 version = "1.0",
                 license = @License(
                         name = "Licence name",
@@ -48,13 +47,13 @@ import io.swagger.v3.oas.annotations.servers.Server;
         name = "bearerAuth",
         description = "JWT auth description",
         scheme = "bearer",
-        type = SecuritySchemeType.OAUTH2,
-        flows = @OAuthFlows(
+        type = SecuritySchemeType.HTTP,
+      /*  flows = @OAuthFlows(
                 clientCredentials =
                 @OAuthFlow(
                         authorizationUrl = "http://localhost:9090/realms/book-social-network/protocol/openid-connect/auth"
                 )
-        ),
+        ), */
         bearerFormat = "JWT",
         in = SecuritySchemeIn.HEADER
 )

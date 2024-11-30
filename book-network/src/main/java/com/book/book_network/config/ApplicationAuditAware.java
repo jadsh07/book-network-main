@@ -1,5 +1,6 @@
 package com.book.book_network.config;
 
+import com.book.book_network.user.User;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -7,9 +8,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Optional;
 
-public class ApplicationAuditAware implements AuditorAware<String> {
+public class ApplicationAuditAware implements AuditorAware<Integer> {
     @Override
-    public Optional<String> getCurrentAuditor() {
+    public Optional<Integer> getCurrentAuditor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null ||
@@ -18,8 +19,8 @@ public class ApplicationAuditAware implements AuditorAware<String> {
             return Optional.empty();
         }
 
-        // User userPrincipal = (User) authentication.getPrincipal();
+         User userPrincipal = (User) authentication.getPrincipal();
 
-        return Optional.ofNullable(authentication.getName());
+        return Optional.ofNullable(userPrincipal.getId());
     }
 }
