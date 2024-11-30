@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "api-gen": "ng-openapi-gen --input src//openapi/openapi.json --output src/app/api",
     "serve:ssr:book-network-ui": "node dist/book-network-ui/server/server.mjs"
   },
   "private": true,
@@ -26,6 +27,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "express": "^4.18.2",
+    "ng-openapi-gen": "^0.52.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
