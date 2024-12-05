@@ -97,25 +97,7 @@ public class AuthenticationService {
     return codeBuilder.toString();
   }
 
-
-  public AuthenticationResponse authenticate(AuthenticationRequest request) {
-    var auth = authenticationManager.authenticate(
-      new UsernamePasswordAuthenticationToken(
-        request.getEmail(),
-        request.getPassword()
-      )
-    );
-    var claims = new HashMap<String, Object>();
-    var user = ((User) auth.getPrincipal());
-    claims.put("fullName", user.getFullName());
-
-    var jwtToken = jwtService.generateToken(claims, (User) auth.getPrincipal());
-    return AuthenticationResponse.builder()
-      .token(jwtToken)
-      .build();
-  }
-
- // @Transactional
+  // @Transactional
   public void activateAccount(String token) throws MessagingException {
     Token savedToken = tokenRepository.findByToken(token)
       // todo exception has to be defined
@@ -132,6 +114,23 @@ public class AuthenticationService {
 
     savedToken.setValidatedAt(LocalDateTime.now());
     tokenRepository.save(savedToken);
+  }
+
+  public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    var auth = authenticationManager.authenticate(
+      new UsernamePasswordAuthenticationToken(
+        request.getEmail(),
+        request.getPassword()
+      )
+    );
+    var claims = new HashMap<String, Object>();
+    var user = ((User) auth.getPrincipal());
+    claims.put("fullName", user.getFullName());
+
+    var jwtToken = jwtService.generateToken(claims, (User) auth.getPrincipal());
+    return AuthenticationResponse.builder()
+      .token(jwtToken)
+      .build();
   }
 
 }
