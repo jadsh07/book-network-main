@@ -3,6 +3,7 @@ import { AuthenticationRequest } from '../../api/models';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../api/services';
 import { TokenService } from '../../api/token/token.service';
+import { KeycloakService } from '../../api/keycloak/keycloak.service';
 
 @Component({
   selector: 'app-login',
@@ -13,23 +14,23 @@ import { TokenService } from '../../api/token/token.service';
 })
 export class LoginComponent implements OnInit {
 
-  authRequest: AuthenticationRequest = {email: '', password: ''};
-  errorMsg: Array<string> = [];
+ // authRequest: AuthenticationRequest = {email: '', password: ''};
+ // errorMsg: Array<string> = [];
 
   constructor(
-    //private ss: KeycloakService
-    private router: Router,
-    private authService: AuthenticationService,
-    private tokenService: TokenService
+    private ss: KeycloakService
+   // private router: Router,
+   // private authService: AuthenticationService,
+   // private tokenService: TokenService
   ) {
   }
 
   async ngOnInit(): Promise<void> {
-   // await this.ss.init();
-    //await this.ss.login();
+    await this.ss.init();
+    await this.ss.login();
   }
 
-  login() {
+/*  login() {
     this.errorMsg = [];
     this.authService.authenticate({
       body: this.authRequest
@@ -52,5 +53,6 @@ export class LoginComponent implements OnInit {
   register() {
     this.router.navigate(['register']);
   }
+*/
 }
 

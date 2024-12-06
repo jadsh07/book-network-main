@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { KeycloakService } from '../../../../api/keycloak/keycloak.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   constructor(
-   // private keycloakService: KeycloakService
+   private keycloakService: KeycloakService
   ) {
   }
     ngOnInit(): void {
@@ -27,8 +28,8 @@ export class MenuComponent implements OnInit {
     }
 
   async logout() {
-    //await this.keycloakService.logout();
-    localStorage.removeItem('token');
-    window.location.reload();
+    await this.keycloakService.logout();
+   // localStorage.removeItem('token');
+  //  window.location.reload();
   }
 }
