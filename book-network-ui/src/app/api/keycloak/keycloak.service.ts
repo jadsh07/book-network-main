@@ -6,6 +6,7 @@ import { UserProfile } from './user-profile';
   providedIn: 'root',
 })
 export class KeycloakService {
+
   private _keycloak: Keycloak | undefined;
 
   get keycloak() {
@@ -47,5 +48,9 @@ export class KeycloakService {
   logout() {
     // this.keycloak.accountManagement();
     return this.keycloak.logout({redirectUri: 'http://localhost:4200'});
+ 
+  }
+  accountManagement() {
+    return this.keycloak?.accountManagement();
   }
 }

@@ -32,4 +32,8 @@ export class MenuComponent implements OnInit {
    // localStorage.removeItem('token');
   //  window.location.reload();
   }
+
+  async accountManagement() {
+    await this.keycloakService.accountManagement();
+  }
 }
