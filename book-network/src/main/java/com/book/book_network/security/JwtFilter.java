@@ -18,9 +18,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
- @Service
+ //@Service
 @RequiredArgsConstructor
-public class JwtFilter extends OncePerRequestFilter {
+public class JwtFilter  {
+    /*
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
 
@@ -59,5 +60,7 @@ public class JwtFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
+
+     */
 }
 

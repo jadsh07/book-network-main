@@ -17,9 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
- @Service
+ //@Service
 public class JwtService {
-    @Value("${application.security.jwt.secret-key}")
+    /*@Value("${application.security.jwt.secret-key}")
     private String secretKey;
     @Value("${application.security.jwt.expiration}")
     private long jwtExpiration;
@@ -97,4 +97,6 @@ public class JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
+     */
 }
